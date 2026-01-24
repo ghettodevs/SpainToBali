@@ -7,7 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         try {
             // 1. Intentamos guardar en la tabla leads
-            $sql = "INSERT INTO leads (email, origen) VALUES (:email, 'Guía Bali 2026')";
+          
+            $sql = "INSERT INTO leads (email, origen) 
+                    VALUES (:email, 'Guía Bali 2026') 
+                    ON DUPLICATE KEY UPDATE fecha_registro = CURRENT_TIMESTAMP";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':email' => $email]);
         } catch (PDOException $e) {

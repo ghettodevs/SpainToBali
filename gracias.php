@@ -1,6 +1,6 @@
 <?php 
 // Detectamos si el usuario viene de la guía o del contacto
-$tipo = isset($_GET['info']) && $_GET['info'] == 'guia'; 
+$tipo = (isset($_GET['info']) && $_GET['info'] == 'guia'); 
 include 'includes/header.php'; 
 ?>
 
@@ -13,7 +13,7 @@ include 'includes/header.php';
         <p>
             <?php 
             if ($tipo) {
-                echo "Se ha abierto una nueva pestaña con tu <strong>Guía de Supervivencia Bali 2026</strong>. ¡Disfrútala!";
+                echo "La descarga de tu <strong>Guía de Supervivencia Bali 2026</strong> ha comenzado. ¡Revísala ahora!";
             } else {
                 echo "Tu solicitud ha llegado a manos de nuestros expertos en <strong>SpainToBali</strong>.";
             }
@@ -21,21 +21,30 @@ include 'includes/header.php';
         </p>
 
         <div class="next-steps">
-            <h3><?php echo $tipo ? '¿Qué encontrarás en la guía?' : '¿Qué pasa ahora?'; ?></h3>
-            <ul>
-                <?php if ($tipo): ?>
-                    <li>✅ Consejos sobre moneda y propinas.</li>
-                    <li>✅ Cómo evitar el famoso "Bali Belly".</li>
-                    <li>✅ Los mejores templos sin multitudes.</li>
-                <?php else: ?>
-                    <li>✅ Revisaremos tu itinerario ideal.</li>
-                    <li>✅ Te contactaremos en menos de 24 horas.</li>
-                    <li>✅ Prepararemos un presupuesto a tu medida.</li>
-                <?php endif; ?>
-            </ul>
+            <?php if ($tipo) { ?>
+                <div class="consultancy-box" style="background: #f4f1ea; padding: 25px; border: 2px solid #C5A059; border-radius: 15px; margin: 20px 0; text-align: center;">
+                    <h3 style="color: #2D5A27; margin-top: 0;">¿Quieres un itinerario perfecto? 🗺️</h3>
+                    <p>No pierdas tiempo planificando. Reserva una <strong>consultoría gratuita de 15 min</strong> con nosotros.</p>
+                    <a href="https://calendly.com/spaintobali" target="_blank" class="btn" style="background: #2D5A27; color: white; display: inline-block; padding: 12px 25px; margin-top: 10px; text-decoration: none; border-radius: 5px;">Reservar mi llamada gratis</a>
+                </div>
+                
+                <h3>¿Qué encontrarás en la guía?</h3>
+                <ul>
+                    <li>✅ Consejos sobre moneda y propinas locales.</li>
+                    <li>✅ Cómo evitar el famoso "Bali Belly" y salud.</li>
+                    <li>✅ Movilidad inteligente: Apps de transporte.</li>
+                </ul>
+            <?php } else { ?>
+                <h3>¿Qué pasa ahora?</h3>
+                <ul>
+                    <li>✅ Revisaremos tus fechas y número de viajeros.</li>
+                    <li>✅ Te contactaremos por email en menos de 24 horas.</li>
+                    <li>✅ Recibirás un presupuesto 100% a medida para Bali.</li>
+                </ul>
+            <?php } ?>
         </div>
         
-        <a href="index.php" class="btn">Volver al inicio</a>
+        <a href="index.php" class="btn-outline" style="display: block; margin-top: 20px; color: #666; text-decoration: none; text-align: center;">Volver al inicio</a>
     </section>
 </main>
 

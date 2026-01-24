@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,6 +14,8 @@ body {
   background-color: #f9f6f2;
   color: #081c15;
   line-height: 1.6;
+  /* Evita scroll horizontal en móvil */
+  overflow-x: hidden;
 }
 
 .container {
@@ -38,42 +41,83 @@ header {
 header nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; /* Alineación vertical perfecta */
+  position: relative;
 }
-header nav .logo {
+header .logo {
   font-family: "Playfair Display", serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: #1b4332;
+  z-index: 1002; /* El logo siempre visible */
 }
-header nav .logo span {
+header .logo span {
   color: #c5a059;
 }
-header nav ul {
+header ul.nav-menu {
   display: flex;
   list-style: none;
   gap: 25px;
   align-items: center;
+  /* Botón de presupuesto en escritorio */
 }
-header nav ul li a {
+header ul.nav-menu li a {
   font-weight: 600;
   font-size: 0.9rem;
   color: #1b4332;
   text-transform: uppercase;
 }
-header nav ul li a:hover {
+header ul.nav-menu li a:hover {
   color: #c5a059;
 }
-header nav ul .btn-nav {
+header ul.nav-menu .btn-nav {
   background: #1b4332;
   color: white !important;
   padding: 10px 22px;
   border-radius: 5px;
 }
-header nav ul .btn-nav:hover {
+header ul.nav-menu .btn-nav:hover {
   background: #c5a059;
-  color: white !important;
   box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001; /* Encima del menú desplegable */
+  padding: 5px;
+}
+.menu-toggle span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: #1b4332;
+  transition: 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  z-index: 998; /* Debajo del menú desplegable */
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .hero {
@@ -91,6 +135,7 @@ header nav ul .btn-nav:hover {
   font-family: "Playfair Display", serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   margin-bottom: 1rem;
+  color: #f9f6f2;
 }
 .hero h1 span {
   color: #c5a059;
@@ -111,7 +156,7 @@ header nav ul .btn-nav:hover {
 }
 
 section {
-  padding: 100px 0;
+  padding: 80px 0;
 }
 
 .section-title {
@@ -120,7 +165,7 @@ section {
 }
 .section-title h2 {
   font-family: "Playfair Display", serif;
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   margin-bottom: 15px;
 }
 .section-title p {
@@ -166,7 +211,6 @@ section {
   display: flex;
   align-items: flex-end;
   padding: 25px;
-  transition: 0.3s;
 }
 .grid-gallery .item .overlay span {
   color: white;
@@ -230,105 +274,6 @@ section {
   background: #c5a059;
 }
 
-footer {
-  background: #081c15;
-  color: white;
-  padding: 50px 0;
-  text-align: center;
-}
-footer .logo {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-}
-footer .logo span {
-  color: #c5a059;
-}
-footer .copy {
-  opacity: 0.4;
-  font-size: 0.8rem;
-  margin-top: 30px;
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 0.8s all ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.whatsapp-float {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  background-color: #25d366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: all 0.3s ease;
-  background-image: url("https://img.icons8.com/?size=100&id=16713&format=png&color=ffffff");
-  background-size: 35px;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.whatsapp-float:hover {
-  transform: scale(1.1) rotate(5deg);
-  background-color: #1ebe57;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.thanks-container {
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=1400");
-  background-size: cover;
-}
-.thanks-container .thanks-content {
-  max-width: 600px;
-  padding: 40px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-.thanks-container .thanks-content .icon-check {
-  font-size: 4rem;
-  margin-bottom: 20px;
-}
-.thanks-container .thanks-content h1 {
-  color: #1b4332;
-  margin-bottom: 15px;
-}
-.thanks-container .thanks-content .next-steps {
-  text-align: left;
-  background: #f9f6f2;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 25px 0;
-}
-.thanks-container .thanks-content .next-steps h3 {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  color: #c5a059;
-}
-.thanks-container .thanks-content .next-steps ul {
-  list-style: none;
-}
-.thanks-container .thanks-content .next-steps ul li {
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-}
-
 .lead-magnet {
   background-color: #1b4332;
   padding: 80px 0;
@@ -348,6 +293,7 @@ footer .copy {
   .lead-magnet .magnet-wrapper {
     grid-template-columns: 1fr;
     text-align: center;
+    padding: 30px;
   }
 }
 .lead-magnet .badge {
@@ -383,7 +329,6 @@ footer .copy {
   padding: 15px 20px;
   border-radius: 10px;
   border: none;
-  font-size: 1rem;
 }
 .lead-magnet .magnet-form .btn-gold {
   background: #c5a059;
@@ -393,24 +338,258 @@ footer .copy {
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
-  transition: 0.3s;
 }
 .lead-magnet .magnet-form .btn-gold:hover {
   background: white;
   color: #1b4332;
-}
-.lead-magnet .magnet-image {
-  perspective: 1000px;
 }
 .lead-magnet .magnet-image img {
   width: 100%;
   border-radius: 10px;
   transform: rotateY(-15deg) rotateX(10deg);
   box-shadow: -20px 20px 50px rgba(0, 0, 0, 0.5);
-  transition: 0.5s ease;
   border: 5px solid white;
+  transition: 0.5s ease;
 }
-.lead-magnet .magnet-image:hover img {
-  transform: rotateY(0deg) rotateX(0deg) scale(1.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+.lead-magnet .magnet-image img:hover {
+  transform: rotateY(0deg) scale(1.05);
+}
+
+.beneficios {
+  padding: 80px 0;
+  background-color: #f9f6f2;
+  text-align: center;
+}
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.beneficio-item {
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+.beneficio-item .icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+  display: block;
+}
+.beneficio-item h3 {
+  color: #1b4332;
+  margin-bottom: 15px;
+  font-family: "Playfair Display", serif;
+}
+.beneficio-item p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+footer {
+  background: #081c15;
+  color: white;
+  padding: 50px 0;
+  text-align: center;
+}
+footer .logo {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+footer .logo span {
+  color: #c5a059;
+}
+footer .copy {
+  opacity: 0.4;
+  font-size: 0.8rem;
+  margin-top: 30px;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  background-image: url("https://img.icons8.com/?size=100&id=16713&format=png&color=ffffff");
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1) rotate(5deg);
+  background-color: #1ebe57;
+}
+
+.thanks-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Centrado vertical */
+  padding: 40px 20px;
+  background-color: #f9f6f2;
+}
+
+.thanks-content {
+  background: white;
+  max-width: 650px;
+  width: 100%;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  margin: 0 auto;
+}
+
+.consultancy-box {
+  margin: 30px 0;
+  padding: 30px;
+  border: 2px solid #C5A059; /* Dorado */
+  border-radius: 15px;
+  background: #fffcf7;
+}
+
+.icon-check {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  display: block; /* Asegura que salte de línea */
+}
+
+.next-steps {
+  text-align: left;
+  background: #f9f6f2;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 25px 0;
+}
+.next-steps h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #c5a059;
+}
+.next-steps ul {
+  display: block;
+  text-align: left;
+  margin: 10px 0;
+  padding-left: 20px; /* Un poco de sangría para la lista */
+  list-style: none;
+}
+.next-steps ul li {
+  margin-bottom: 10px;
+}
+
+.cta-llamada {
+  margin-top: 40px;
+  padding: 30px;
+  background: #fff;
+  border: 2px solid #C5A059;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.btn-calendly {
+  display: inline-block;
+  background: #2D5A27; /* Verde SpainToBali */
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.btn-calendly:hover {
+  background: #1e3d1a;
+  transform: scale(1.05);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+  .menu-toggle.is-active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .menu-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.is-active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+  .nav-menu {
+    display: flex !important; /* Forza visualización flexible */
+    position: fixed;
+    top: 0;
+    right: -100%; /* Oculto a la derecha */
+    width: 80%;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    z-index: 1000; /* Debajo de la hamburguesa (1001) */
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  .nav-menu.active {
+    right: 0;
+  }
+  .nav-menu li {
+    display: block !important; /* Asegura que se vean */
+    width: 100%;
+    text-align: center;
+    /* Preparación para animación (Delay) */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+  }
+  .nav-menu li a {
+    font-size: 1.3rem !important;
+    color: #081c15;
+    display: block;
+    padding: 10px;
+  }
+  .nav-menu .btn-nav-item .btn-nav {
+    background: #1b4332;
+    color: white !important;
+    width: 80%;
+    display: inline-block;
+    padding: 15px;
+    font-size: 1rem;
+  }
+  .nav-menu.active li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .nav-menu.active li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  .nav-menu.active li:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  .nav-menu.active li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  .nav-menu.active li:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+}
+@media (max-width: 400px) {
+  .nav-menu {
+    width: 100%;
+  } /* Ocupa toda la pantalla */
 }/*# sourceMappingURL=styles.css.map */

@@ -1,6 +1,6 @@
 <?php include 'includes/header.php'; ?>
 
-<section class="hero">
+<section id="inicio" class="hero">
     <div class="hero-content">
         <h1>Spain<span>To</span>Bali</h1>
         <p>Expertos en viajes a medida desde España al paraíso indonesio.</p>
@@ -8,7 +8,7 @@
     </div>
 </section>
 
-<section id="galeria" class="gallery-container container">
+<section id="destinos" class="gallery-container container">
     <div class="section-title">
         <h2>Explora Bali con nosotros</h2>
         <p>Seleccionamos los rincones más auténticos para tu experiencia personalizada.</p>
@@ -22,9 +22,9 @@
             <div class="overlay"><span>Templos Sagrados</span></div>
         </div>
         <div class="item" style="background-image: url('https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=800')">
-            <div class="overlay"><span>Islas paradisíacas</span></div>
+            <div class="overlay"><span>Playas paradisíacas</span></div>
         </div>
-        <div class="item" style="background-image: url('https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=800')">
+        <div class="item" style="background-image: url('https://images.unsplash.com/photo-1734791012420-3107457b158b?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
             <div class="overlay"><span>Cascadas Ocultas</span></div>
         </div>
     </div>
@@ -37,48 +37,70 @@
                 <h2>¿Hablamos?</h2>
                 <p>Cuéntanos tu idea de viaje y nosotros nos encargamos de toda la logística desde España.</p>
                 <ul class="features">
-                    <li>✅ Hoteles boutique seleccionados</li>
-                    <li>✅ Guías locales en español</li>
+                    <li>✅ Hoteles y Villas seleccionados</li>
+                    <li>✅ Guías locales en español/ingles</li>
                     <li>✅ Asistencia 24/7</li>
                 </ul>
             </div>
 
-
-
             <form action="contacto.php" method="POST">
-    <div style="display:none;">
-        <input type="text" name="honeypot">
-    </div>
+                <div style="display:none;">
+                    <input type="text" name="honeypot">
+                </div>
 
-    <div class="input-group">
-        <input type="text" name="nombre" placeholder="Tu nombre completo" required>
-    </div>
-    
-    <div class="input-group">
-        <input type="email" name="email" placeholder="Correo electrónico" required>
-    </div>
+                <div class="input-group">
+                    <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+                </div>
+                
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Correo electrónico" required>
+                </div>
 
-    <div class="row">
-        <div class="input-group">
-            <label>Fecha prevista</label>
-            <input type="date" name="fecha" required>
-        </div>
-        <div class="input-group">
-            <label>Nº Viajeros</label>
-            <input type="number" name="personas" min="1" value="2">
-        </div>
-    </div>
+                <div class="row">
+                    <div class="input-group">
+                        <label>Fecha prevista</label>
+                        <input type="date" name="fecha" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Nº Viajeros</label>
+                        <input type="number" name="personas" min="1" value="2">
+                    </div>
+                </div>
 
-    <div class="input-group">
-        <textarea name="mensaje" placeholder="¿Cómo imaginas tu viaje ideal?"></textarea>
-    </div>
+                <div class="input-group">
+                    <textarea name="mensaje" placeholder="¿Cómo imaginas tu viaje ideal?"></textarea>
+                </div>
 
-    <button type="submit" class="btn-submit">Empezar aventura</button>
-</form>
+                <button type="submit" class="btn-submit">Empezar aventura</button>
+            </form>
         </div>
     </div>
 </section>
-<section class="lead-magnet">
+
+<section class="beneficios">
+    <div class="container">
+        <h2 class="section-title">¿Por qué viajar con SpainToBali?</h2>
+        <div class="beneficios-grid">
+            <div class="beneficio-item">
+                <span class="icon">🇪🇸</span>
+                <h3>Soporte en Castellano</h3>
+                <p>Olvídate de la barrera del idioma. Te acompañamos en tu lengua nativa de principio a fin.</p>
+            </div>
+            <div class="beneficio-item">
+                <span class="icon">🌴</span>
+                <h3>Expertos Locales</h3>
+                <p>No somos una agencia genérica. Vivimos y respiramos Bali para ofrecerte rincones secretos.</p>
+            </div>
+            <div class="beneficio-item">
+                <span class="icon">🛡️</span>
+                <h3>Seguridad 24/7</h3>
+                <p>Asistencia constante durante tu viaje en 2026 para que tu única preocupación sea disfrutar.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="guia" class="lead-magnet">
     <div class="container">
         <div class="magnet-wrapper">
             <div class="magnet-text">
@@ -99,5 +121,6 @@
         </div>
     </div>
 </section>
+
 
 <?php include 'includes/footer.php'; ?>
