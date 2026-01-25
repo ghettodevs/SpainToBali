@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]);
 
         if ($resultado) {
-            header("Location: gracias");
+            header("Location: gracias.php");
             exit; 
         }
 
