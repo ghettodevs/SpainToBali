@@ -25,7 +25,7 @@ include 'includes/header.php';
                 <div class="consultancy-box" style="background: #f4f1ea; padding: 25px; border: 2px solid #C5A059; border-radius: 15px; margin: 20px 0; text-align: center;">
                     <h3 style="color: #2D5A27; margin-top: 0;">¿Quieres un itinerario perfecto? 🗺️</h3>
                     <p>No pierdas tiempo planificando. Reserva una <strong>consultoría gratuita de 15 min</strong> con nosotros.</p>
-                    <a href="https://calendly.com/spaintobali" target="_blank" class="btn" style="background: #2D5A27; color: white; display: inline-block; padding: 12px 25px; margin-top: 10px; text-decoration: none; border-radius: 5px;">Reservar mi llamada gratis</a>
+                    <a href="https://calendly.com/contacto-spaintobali/30min" target="_blank" class="btn" style="background: #2D5A27; color: white; display: inline-block; padding: 12px 25px; margin-top: 10px; text-decoration: none; border-radius: 5px;">Reservar mi llamada gratis</a>
                 </div>
                 
                 <h3>¿Qué encontrarás en la guía?</h3>
