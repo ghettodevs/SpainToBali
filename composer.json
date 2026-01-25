@@ -1,0 +1,8 @@
+{
+    "name": "guillermo/spain-to-bali",
+    "description": "Spain to Bali travel website",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

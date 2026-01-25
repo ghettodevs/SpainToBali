@@ -1,0 +1,14 @@
+vendor/
+
+.DS_Store
+.dockerignore
+.env
+.env.example
+.gitattributes
+.gitignore
+
+composer-setup.php
+composer.phar
+
+docker-compose.yml
+Dockerfile

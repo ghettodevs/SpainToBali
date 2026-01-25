@@ -1,16 +1,17 @@
 <?php
-// Seguridad: Si alguien intenta acceder directamente a este archivo, se corta la ejecución.
-if (basename($_SERVER['PHP_SELF']) == 'db.php') {
-    die("Acceso denegado.");
-}
+// Load environment variables
+require_once __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->safeLoad();
 
-$host = '127.0.0.1';
-$db   = 'SpainToBali';
-$user = 'root';
-$pass = ''; // Déjalo vacío si usas XAMPP estándar
-$charset = 'utf8mb4';
+// Get environment variables with defaults
+$host = $_ENV['DB_HOST'] ?? '127.0.0.1';
+$port = $_ENV['DB_PORT'] ?? '5432';
+$db = $_ENV['DB_NAME'] ?? 'spaintobali';
+$user = $_ENV['DB_USER'] ?? 'postgres';
+$pass = $_ENV['DB_PASS'] ?? '';
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$dsn = "pgsql:host=$host;port=$port;dbname=$db";
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

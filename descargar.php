@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           
             $sql = "INSERT INTO leads (email, origen) 
                     VALUES (:email, 'Guía Bali 2026') 
-                    ON DUPLICATE KEY UPDATE fecha_registro = CURRENT_TIMESTAMP";
+                    ON CONFLICT (email, origen) DO UPDATE SET fecha_registro = CURRENT_TIMESTAMP";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':email' => $email]);
         } catch (PDOException $e) {
