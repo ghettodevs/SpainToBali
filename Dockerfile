@@ -8,17 +8,17 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts --ignore-platfo
 # Stage 2: Final PHP Apache image
 FROM php:8.2-apache
 
+# Install PostgreSQL extension
+RUN apt update && apt install -y libpq-dev \
+    && docker-php-ext-install pdo_pgsql \
+    && apt clean && rm -rf /var/lib/apt/lists/*
+
 # Copy application files
 WORKDIR /var/www/html
 COPY --from=composer /app/vendor ./vendor
 COPY . .
 
 RUN rm composer.json composer.lock
-
-# Install PostgreSQL extension
-RUN apt update && apt install -y libpq-dev \
-    && docker-php-ext-install pdo_pgsql \
-    && apt clean && rm -rf /var/lib/apt/lists/*
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
