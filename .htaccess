@@ -1,19 +1,11 @@
 RewriteEngine On
+RewriteBase /
 
-# 1. Forzar HTTPS (Seguridad)
+# Redirigir a HTTPS si tienes SSL
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 2. Eliminar la extensión .php de las URLs
-# Esto permite que spaintobali.es/gracias cargue gracias.php
+# Si no es un archivo real, enviarlo al index.php
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
-
-# 3. Evitar que se listan las carpetas (Seguridad)
-Options -Indexes
-
-# 4. Compresión GZIP (Para que la web vuele)
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
-</IfModule>
+RewriteRule ^(.*)$ index.php [L,QSA]
