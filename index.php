@@ -43,7 +43,7 @@
                 </ul>
             </div>
 
-            <form action="contacto.php" method="POST">
+            <form action="contacto" method="POST">
                 <div style="display:none;">
                     <input type="text" name="honeypot">
                 </div>
