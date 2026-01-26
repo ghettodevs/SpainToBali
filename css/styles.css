@@ -174,10 +174,15 @@ section {
   margin: 0 auto;
 }
 
+#destinos .section-title {
+  padding-top: 2rem;
+}
+
 .grid-gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  padding-bottom: 4rem;
 }
 @media (max-width: 1024px) {
   .grid-gallery {

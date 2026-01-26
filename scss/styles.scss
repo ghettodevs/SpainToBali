@@ -204,11 +204,18 @@ section {
     }
 }
 
+#destinos {
+    .section-title{
+        padding-top: 2rem;
+    }
+}
+
 // Galería Grid
 .grid-gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    padding-bottom: 4rem;
 
     @media (max-width: 1024px) {
         grid-template-columns: repeat(2, 1fr);
