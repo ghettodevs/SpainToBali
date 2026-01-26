@@ -5,9 +5,8 @@ use PHPMailer\PHPMailer\Exception;
 require __DIR__ . '/vendor/autoload.php'; 
 
 // CARGA DE VARIABLES DE ENTORNO OBLIGATORIA
-// Cambia esto en tu contacto.php
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->safeLoad(); // safeLoad no lanza una excepción si el archivo no existe
+$dotenv->load();
 
 // 2. CONEXIÓN A DB
 try {
