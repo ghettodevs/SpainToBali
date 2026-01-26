@@ -108,7 +108,7 @@
                 <h2>Guía de Supervivencia: Bali 2026</h2>
                 <p>Todo lo que las agencias no te cuentan: desde dónde cambiar moneda sin comisiones hasta cómo evitar el "Bali Belly".</p>
                 
-                <form action="descargar" method="POST" class="magnet-form">
+                <form action="/gracias?info=guia" method="POST" class="magnet-form">
                     <input type="email" name="email_guia" placeholder="Tu email..." required>
                     <button type="submit" class="btn-gold">Enviar Guía a mi Email</button>
                 </form>
