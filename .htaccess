@@ -10,3 +10,9 @@ RewriteRule ^(.+)\.php$ http://%{HTTP_HOST}/$1 [R=301,L]
 
 # Resolve .php file for extensionless PHP URLs
 RewriteRule ^([^/.]+)$ $1.php [L]
+
+# Bloquear acceso a archivos sensibles
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>

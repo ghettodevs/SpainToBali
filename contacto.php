@@ -1,60 +1,66 @@
 <?php
-// 1. CARGA DE LIBRERÍAS
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 require 'vendor/autoload.php'; 
 
-// 2. CARGAR VARIABLES DE ENTORNO (Solo si no se cargaron en index.php)
+// 1. CARGA DE VARIABLES DE ENTORNO
 if (!isset($_ENV['DB_HOST'])) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->safeLoad();
 }
 
-// 3. CONEXIÓN A POSTGRESQL (Usando tus variables del .env)
+// 2. CONEXIÓN A DB
 try {
     $dsn = "pgsql:host={$_ENV['DB_HOST']};port={$_ENV['DB_PORT']};dbname={$_ENV['DB_NAME']}";
     $pdo = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 } catch (PDOException $e) {
-    error_log("Fallo de conexión en SpainToBali: " . $e->getMessage());
-    die("Error de conexión: " . $e->getMessage());
+    error_log("Error DB: " . $e->getMessage());
+    die("Error de configuración interna.");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!empty($_POST['honeypot'])) die("Acceso denegado.");
 
-    // Seguridad Honeypot
-    if (!empty($_POST['honeypot'])) {
-        die("Acceso no autorizado.");
-    }
-
-    // Recogida y limpieza de datos
     $nombre   = htmlspecialchars($_POST['nombre'] ?? '');
     $email    = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
     $mensaje  = htmlspecialchars($_POST['mensaje'] ?? '');
     $fecha    = $_POST['fecha'] ?? null; 
     $personas = intval($_POST['personas'] ?? 1);
 
-    if (empty($nombre) || empty($email) || !$fecha) {
-        die("Por favor, completa todos los campos obligatorios.");
-    }
-
     try {
-        // 4. INSERCIÓN EN LA DB (Asegúrate que la tabla se llame 'mensajes')
+        // 3. GUARDAR EN DB (Prioritario)
         $sql = "INSERT INTO public.mensajes (nombre, email, fecha_viaje, num_personas, mensaje, fecha_envio) 
                 VALUES (:nombre, :email, :fecha, :personas, :mensaje, NOW())";
-        
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':nombre'   => $nombre,
-            ':email'    => $email,
-            ':fecha'    => $fecha,
-            ':personas' => $personas,
-            ':mensaje'  => $mensaje
-        ]);
+        $stmt->execute([':nombre'=>$nombre, ':email'=>$email, ':fecha'=>$fecha, ':personas'=>$personas, ':mensaje'=>$mensaje]);
 
-        // 5. REDIRECCIÓN LIMPIA (Sin .php para que el Router funcione)
-        header("Location: gracias?info=contacto");
-        exit; 
+        // 4. INTENTAR ENVIAR EMAIL (Si falla, el catch nos salvará)
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host       = $_ENV['SMTP_HOST']; 
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $_ENV['SMTP_USER']; 
+        $mail->Password   = $_ENV['SMTP_PASS']; 
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = $_ENV['SMTP_PORT']; 
 
-    } catch (PDOException $e) {
-        error_log("Error DB SpainToBali: " . $e->getMessage());
-        echo "Error al guardar los datos. Revisa la terminal del VPS.";
+        $mail->setFrom($_ENV['SMTP_USER'], 'SpainToBali');
+        $mail->addAddress($_ENV['SMTP_USER']); 
+        $mail->addReplyTo($email, $nombre); 
+
+        $mail->isHTML(true);
+        $mail->Subject = "Nueva solicitud: $nombre";
+        $mail->Body    = "<b>Nombre:</b> $nombre<br><b>Email:</b> $email<br><b>Mensaje:</b> $mensaje";
+
+        $mail->send();
+
+    } catch (Exception $e) {
+        // Si el correo falla, registramos el error en el servidor pero NO detenemos la web
+        error_log("Error de envío en SpainToBali: " . $e->getMessage());
     }
+
+    // 5. REDIRECCIÓN FINAL (Siempre ocurre, falle o no el mail)
+    header("Location: gracias?info=contacto");
+    exit;
 }
