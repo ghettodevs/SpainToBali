@@ -2,7 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php'; 
+require_once __DIR__ . '/vendor/autoload.php';
 
 // 1. CARGA DE VARIABLES DE ENTORNO
 if (!isset($_ENV['DB_HOST'])) {
