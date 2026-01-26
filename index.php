@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 
 // Cargar variables de entorno desde el .env
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+$dotenv->safeLoad();
 
 $request = $_SERVER['REQUEST_URI'];
 $path = parse_url($request, PHP_URL_PATH);

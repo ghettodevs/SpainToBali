@@ -5,7 +5,7 @@ require 'vendor/autoload.php';
 // 2. CARGAR VARIABLES DE ENTORNO (Solo si no se cargaron en index.php)
 if (!isset($_ENV['DB_HOST'])) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
+    $dotenv->safeLoad();
 }
 
 // 3. CONEXIÓN A POSTGRESQL (Usando tus variables del .env)
