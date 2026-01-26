@@ -100,6 +100,10 @@ header ul.nav-menu .btn-nav:hover {
   border-radius: 2px;
 }
 
+.features li {
+  list-style: none;
+}
+
 .menu-overlay {
   position: fixed;
   top: 0;
