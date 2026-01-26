@@ -8,8 +8,8 @@
             &copy; <?php echo date('Y'); ?> SpainToBali - Todos los derechos reservados.
         </div>
         <img src="" alt="">
-        <a href="https://wa.link/1cv4bd" class="whatsapp-float" target="_blank" rel="noopener noreferrer" onclick="window.location.href='https://wa.link/1cv4bd'; return false;">
-    <img src="assets/img/whatsapp-icon.png" alt="WhatsApp"> 
+        <a href="https://api.whatsapp.com/send?phone=34635770641&text=Hola%20SpainToBali.%20Estoy%20interesado%20en%20un%20presupuesto%20personalizado%20para%20viajar%20a%20Bali.%20%C2%BFMe%20pod%C3%A9is%20ayudar%3F" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <img src="assets/img/whatsapp-icon.png" alt="WhatsApp">
 </a>
 
     </div>
