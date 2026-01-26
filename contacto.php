@@ -2,11 +2,13 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/vendor/autoload.php'; 
+require_once __DIR__ . '/vendor/autoload.php';
 
-// CARGA DE VARIABLES DE ENTORNO OBLIGATORIA
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+// 1. CARGA DE VARIABLES DE ENTORNO
+if (!isset($_ENV['DB_HOST'])) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->safeLoad();
+}
 
 // 2. CONEXIÓN A DB
 try {
