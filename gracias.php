@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $viene_de_guia) {
     exit;
 }
 
-include 'includes/header.php'; 
+include 'includes/header_gracias.php'; 
 ?>
 
 <main class="thanks-container">
