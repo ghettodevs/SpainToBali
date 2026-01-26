@@ -44,7 +44,7 @@ include 'includes/header.php';
             <?php } ?>
         </div>
         
-        <a href="index.php" class="btn-outline" style="display: block; margin-top: 20px; color: #666; text-decoration: none; text-align: center;">Volver al inicio</a>
+        <a href="inicio" class="btn-outline" style="display: block; margin-top: 20px; color: #666; text-decoration: none; text-align: center;">Volver al inicio</a>
     </section>
 </main>
 
