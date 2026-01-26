@@ -48,13 +48,6 @@ include 'includes/header.php';
     </section>
 </main>
 
-<?php if ($tipo): ?>
-<script>
-    // Esto inicia la descarga llamando a tu ruta de 'descargar' sin cerrar esta página
-    setTimeout(() => {
-        window.location.href = '/descargar';
-    }, 1000); // Espera 1 segundo para que cargue la animación
-</script>
-<?php endif; ?>
+
 
 <?php include 'includes/footer.php'; ?>
