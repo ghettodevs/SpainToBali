@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]);
 
         // 5. REDIRECCIÓN LIMPIA (Sin .php para que el Router funcione)
-        header("Location: gracias"); 
+        header("Location: gracias?info=contacto");
         exit; 
 
     } catch (PDOException $e) {

@@ -1,9 +1,11 @@
 <?php
 require_once 'includes/db.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$viene_de_guia = (isset($_GET['info']) && $_GET['info'] == 'guia');
+$viene_de_contacto = (isset($_GET['info']) && $_GET['info'] == 'contacto');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $viene_de_guia) {
     // Detectamos si el usuario viene de la guía o del contacto
-    $tipo = (isset($_GET['info']) && $_GET['info'] == 'guia'); 
     $email = filter_var($_POST['email_guia'], FILTER_SANITIZE_EMAIL);
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -18,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Si la tabla 'leads' no existe aún, no bloqueamos la descarga
         }
     }
-} else {
+} else if (!$viene_de_guia && !$viene_de_contacto) {
     header("Location: index.php"); 
     exit;
 }
@@ -28,13 +30,13 @@ include 'includes/header.php';
 
 <main class="thanks-container">
     <section class="thanks-content reveal active">
-        <div class="icon-check"><?php echo $tipo ? '📖' : '🌴'; ?></div>
+        <div class="icon-check"><?php echo $viene_de_guia ? '📖' : '🌴'; ?></div>
         
-        <h1><?php echo $tipo ? '¡Tu Guía está lista!' : '¡Terima Kasih!'; ?></h1>
+        <h1><?php echo $viene_de_guia ? '¡Tu Guía está lista!' : '¡Terima Kasih!'; ?></h1>
         
         <p>
             <?php 
-            if ($tipo) {
+            if ($viene_de_guia) {
                 echo "La descarga de tu <strong>Guía de Supervivencia Bali 2026</strong> ha comenzado. ¡Revísala ahora!";
             } else {
                 echo "Tu solicitud ha llegado a manos de nuestros expertos en <strong>SpainToBali</strong>.";
@@ -43,7 +45,7 @@ include 'includes/header.php';
         </p>
 
         <div class="next-steps">
-            <?php if ($tipo) { ?>
+            <?php if ($viene_de_guia) { ?>
                 <div class="consultancy-box" style="background: #f4f1ea; padding: 25px; border: 2px solid #C5A059; border-radius: 15px; margin: 20px 0; text-align: center;">
                     <h3 style="color: #2D5A27; margin-top: 0;">¿Quieres un itinerario perfecto? 🗺️</h3>
                     <p>No pierdas tiempo planificando. Reserva una <strong>consultoría gratuita de 15 min</strong> con nosotros.</p>
@@ -70,7 +72,7 @@ include 'includes/header.php';
     </section>
 </main>
 
-<?php if ($tipo): ?>
+<?php if ($viene_de_guia): ?>
 <script>
     // Esto inicia la descarga llamando a tu ruta de 'descargar' sin cerrar esta página
     setTimeout(() => {
