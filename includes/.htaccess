@@ -1,11 +1,1 @@
-RewriteEngine On
-RewriteBase /
-
-# Redirigir a HTTPS si tienes SSL
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Si no es un archivo real, enviarlo al index.php
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php [L,QSA]
+Require all denied

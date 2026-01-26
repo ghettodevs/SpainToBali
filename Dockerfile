@@ -11,7 +11,8 @@ FROM php:8.5-apache
 # Install PostgreSQL extension
 RUN apt update && apt install -y libpq-dev \
     && docker-php-ext-install pdo_pgsql \
-    && apt clean && rm -rf /var/lib/apt/lists/*
+    && apt clean && rm -rf /var/lib/apt/lists/* \
+    && a2enmod rewrite
 
 # Copy application files
 WORKDIR /var/www/html

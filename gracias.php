@@ -1,6 +1,28 @@
-<?php 
-// Detectamos si el usuario viene de la guía o del contacto
-$tipo = (isset($_GET['info']) && $_GET['info'] == 'guia'); 
+<?php
+require_once 'includes/db.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Detectamos si el usuario viene de la guía o del contacto
+    $tipo = (isset($_GET['info']) && $_GET['info'] == 'guia'); 
+    $email = filter_var($_POST['email_guia'], FILTER_SANITIZE_EMAIL);
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        try {
+            // 1. Intentamos guardar en la tabla leads
+            $sql = "INSERT INTO leads (email, origen) 
+                    VALUES (:email, 'Guía Bali 2026') 
+                    ON CONFLICT (email, origen) DO UPDATE SET fecha_registro = CURRENT_TIMESTAMP";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':email' => $email]);
+        } catch (PDOException $e) {
+            // Si la tabla 'leads' no existe aún, no bloqueamos la descarga
+        }
+    }
+} else {
+    header("Location: index.php"); 
+    exit;
+}
+
 include 'includes/header.php'; 
 ?>
 
@@ -44,7 +66,7 @@ include 'includes/header.php';
             <?php } ?>
         </div>
         
-        <a href="inicio" class="btn-outline" style="display: block; margin-top: 20px; color: #666; text-decoration: none; text-align: center;">Volver al inicio</a>
+        <a href="/" class="btn-outline" style="display: block; margin-top: 20px; color: #666; text-decoration: none; text-align: center;">Volver al inicio</a>
     </section>
 </main>
 
@@ -52,8 +74,13 @@ include 'includes/header.php';
 <script>
     // Esto inicia la descarga llamando a tu ruta de 'descargar' sin cerrar esta página
     setTimeout(() => {
-        window.location.href = '/descargar';
-    }, ); // Espera 1 segundo para que cargue la animación
+        const link = document.createElement('a');
+        link.href = 'assets/docs/guia-bali-spaintobali.pdf';
+        link.download = 'Guia-Bali-SpainToBali.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }, 1000); // Espera 1 segundo para que cargue la animación
 </script>
 <?php endif; ?>
 
