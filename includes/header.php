@@ -12,7 +12,10 @@
 
 <header>
    <nav class="container">
-    <div class="logo">Spain<span>To</span>Bali</div>
+    <a href="../index.php">
+        <div class="logo">Spain<span>To</span>Bali</div>
+    </a>
+    
     
     <button class="menu-toggle" aria-label="Abrir menú">
         <span></span>
