@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 // Redirigimos a la página de gracias tras la descarga
                 setTimeout(function(){
-                    window.location.href = 'gracias.php?info=guia';
+                    window.location.href = 'gracias?info=guia';
                 }, 1500);
             </script>
         </body>
