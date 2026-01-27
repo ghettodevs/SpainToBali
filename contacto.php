@@ -2,25 +2,32 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php'; 
+// 1. CARGA DE LIBRERÍAS (Ruta absoluta para Docker)
+require_once __DIR__ . '/vendor/autoload.php';
 
-// 1. CARGA DE VARIABLES DE ENTORNO
-if (!isset($_ENV['DB_HOST'])) {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->safeLoad();
+// 2. CARGA DE VARIABLES DE ENTORNO
+// Forzamos la ruta /var/www/html/ que es donde está tu .env según el ls -la
+try {
+    $dotenv = Dotenv\Dotenv::createImmutable('/var/www/html/');
+    $dotenv->load();
+} catch (Exception $e) {
+    // Si falla el .env, lo registramos pero intentamos seguir para ver el error real
+    error_log("Error cargando .env: " . $e->getMessage());
 }
 
-// 2. CONEXIÓN A DB
+// 3. CONEXIÓN A BASE DE DATOS
 try {
     $dsn = "pgsql:host={$_ENV['DB_HOST']};port={$_ENV['DB_PORT']};dbname={$_ENV['DB_NAME']}";
-    $pdo = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    $pdo = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS'], [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
 } catch (PDOException $e) {
-    error_log("Error DB: " . $e->getMessage());
-    die("Error de configuración interna.");
+    die("Error de conexión a la base de datos. Verifica tu archivo .env");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST['honeypot'])) die("Acceso denegado.");
+    // Protección básica
+    if (!empty($_POST['honeypot'])) die("SPAM detectado.");
 
     $nombre   = htmlspecialchars($_POST['nombre'] ?? '');
     $email    = filter_var($_POST['email'] ?? '', FILTER_SANITIZE_EMAIL);
@@ -29,38 +36,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $personas = intval($_POST['personas'] ?? 1);
 
     try {
-        // 3. GUARDAR EN DB (Prioritario)
+        // 4. GUARDAR EN POSTGRESQL
         $sql = "INSERT INTO public.mensajes (nombre, email, fecha_viaje, num_personas, mensaje, fecha_envio) 
                 VALUES (:nombre, :email, :fecha, :personas, :mensaje, NOW())";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([':nombre'=>$nombre, ':email'=>$email, ':fecha'=>$fecha, ':personas'=>$personas, ':mensaje'=>$mensaje]);
+        $stmt->execute([
+            ':nombre'   => $nombre, 
+            ':email'    => $email, 
+            ':fecha'    => $fecha, 
+            ':personas' => $personas, 
+            ':mensaje'  => $mensaje
+        ]);
 
-        // 4. INTENTAR ENVIAR EMAIL (Si falla, el catch nos salvará)
+        // 5. ENVÍO DE EMAIL CON PHPMAILER
         $mail = new PHPMailer(true);
         $mail->isSMTP();
-        $mail->Host       = $_ENV['SMTP_HOST']; 
+        $mail->Host       = $_ENV['SMTP_HOST'];
         $mail->SMTPAuth   = true;
-        $mail->Username   = $_ENV['SMTP_USER']; 
-        $mail->Password   = $_ENV['SMTP_PASS']; 
+        $mail->Username   = $_ENV['SMTP_USER'];
+        $mail->Password   = $_ENV['SMTP_PASS'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = $_ENV['SMTP_PORT']; 
+        $mail->Port       = $_ENV['SMTP_PORT'];
 
         $mail->setFrom($_ENV['SMTP_USER'], 'SpainToBali');
         $mail->addAddress($_ENV['SMTP_USER']); 
         $mail->addReplyTo($email, $nombre); 
 
         $mail->isHTML(true);
-        $mail->Subject = "Nueva solicitud: $nombre";
-        $mail->Body    = "<b>Nombre:</b> $nombre<br><b>Email:</b> $email<br><b>Mensaje:</b> $mensaje";
+        $mail->Subject = "Nueva solicitud web: $nombre";
+        $mail->Body    = "Has recibido un nuevo mensaje de <b>$nombre</b> ($email).<br><br>Mensaje: $mensaje";
 
         $mail->send();
 
     } catch (Exception $e) {
-        // Si el correo falla, registramos el error en el servidor pero NO detenemos la web
-        error_log("Error de envío en SpainToBali: " . $e->getMessage());
+        error_log("Error en el proceso: " . $e->getMessage());
     }
 
-    // 5. REDIRECCIÓN FINAL (Siempre ocurre, falle o no el mail)
+    // 6. REDIRECCIÓN
     header("Location: gracias?info=contacto");
     exit;
 }
