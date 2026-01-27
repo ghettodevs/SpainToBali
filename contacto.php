@@ -64,6 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $mail->isHTML(true);
         $mail->Subject = "Nueva solicitud web: $nombre";
+        $mail->Body = "Fecha: $fecha";
+        $mail->Body = "personas: $personas";
         $mail->Body    = "Has recibido un nuevo mensaje de <b>$nombre</b> ($email).<br><br>Mensaje: $mensaje";
 
         $mail->send();
