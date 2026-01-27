@@ -41,7 +41,8 @@ header {
 header nav {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Alineación vertical perfecta */
+  align-items: center;
+  /* Alineación vertical perfecta */
   position: relative;
 }
 header .logo {
@@ -49,7 +50,8 @@ header .logo {
   font-size: 1.8rem;
   font-weight: 700;
   color: #1b4332;
-  z-index: 1002; /* El logo siempre visible */
+  z-index: 1002;
+  /* El logo siempre visible */
 }
 header .logo span {
   color: #c5a059;
@@ -88,7 +90,8 @@ header ul.nav-menu .btn-nav:hover {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1001; /* Encima del menú desplegable */
+  z-index: 1001;
+  /* Encima del menú desplegable */
   padding: 5px;
 }
 .menu-toggle span {
@@ -100,7 +103,7 @@ header ul.nav-menu .btn-nav:hover {
   border-radius: 2px;
 }
 
-.features li {
+li {
   list-style: none;
 }
 
@@ -116,7 +119,8 @@ header ul.nav-menu .btn-nav:hover {
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s ease;
-  z-index: 998; /* Debajo del menú desplegable */
+  z-index: 998;
+  /* Debajo del menú desplegable */
 }
 
 .menu-overlay.active {
@@ -250,14 +254,16 @@ section {
   font-weight: 600;
   color: #1b4332;
 }
-.input-group input, .input-group textarea {
+.input-group input,
+.input-group textarea {
   width: 100%;
   padding: 14px;
   border: 1.5px solid #eee;
   border-radius: 8px;
   font-family: inherit;
 }
-.input-group input:focus, .input-group textarea:focus {
+.input-group input:focus,
+.input-group textarea:focus {
   border-color: #c5a059;
   outline: none;
 }
@@ -364,6 +370,15 @@ section {
   transform: rotateY(0deg) scale(1.05);
 }
 
+.form-info p {
+  margin-top: 1rem;
+}
+
+.features li {
+  margin-top: 1rem;
+  list-style: none;
+}
+
 .beneficios {
   padding: 80px 0;
   background-color: #f9f6f2;
@@ -446,7 +461,8 @@ footer .copy {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh; /* Centrado vertical */
+  min-height: 80vh;
+  /* Centrado vertical */
   padding: 40px 20px;
   background-color: #f9f6f2;
 }
@@ -465,7 +481,8 @@ footer .copy {
 .consultancy-box {
   margin: 30px 0;
   padding: 30px;
-  border: 2px solid #C5A059; /* Dorado */
+  border: 2px solid #C5A059;
+  /* Dorado */
   border-radius: 15px;
   background: #fffcf7;
 }
@@ -473,7 +490,8 @@ footer .copy {
 .icon-check {
   font-size: 4rem;
   margin-bottom: 20px;
-  display: block; /* Asegura que salte de línea */
+  display: block;
+  /* Asegura que salte de línea */
 }
 
 .next-steps {
@@ -492,7 +510,8 @@ footer .copy {
   display: block;
   text-align: left;
   margin: 10px 0;
-  padding-left: 20px; /* Un poco de sangría para la lista */
+  padding-left: 20px;
+  /* Un poco de sangría para la lista */
   list-style: none;
 }
 .next-steps ul li {
@@ -510,7 +529,8 @@ footer .copy {
 
 .btn-calendly {
   display: inline-block;
-  background: #2D5A27; /* Verde SpainToBali */
+  background: #2D5A27;
+  /* Verde SpainToBali */
   color: white;
   padding: 15px 30px;
   text-decoration: none;
@@ -538,10 +558,12 @@ footer .copy {
     transform: translateY(-9px) rotate(-45deg);
   }
   .nav-menu {
-    display: flex !important; /* Forza visualización flexible */
+    display: flex !important;
+    /* Forza visualización flexible */
     position: fixed;
     top: 0;
-    right: -100%; /* Oculto a la derecha */
+    right: -100%;
+    /* Oculto a la derecha */
     width: 80%;
     height: 100vh;
     background: white;
@@ -549,7 +571,8 @@ footer .copy {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    z-index: 1000; /* Debajo de la hamburguesa (1001) */
+    z-index: 1000;
+    /* Debajo de la hamburguesa (1001) */
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -558,7 +581,8 @@ footer .copy {
     right: 0;
   }
   .nav-menu li {
-    display: block !important; /* Asegura que se vean */
+    display: block !important;
+    /* Asegura que se vean */
     width: 100%;
     text-align: center;
     /* Preparación para animación (Delay) */
@@ -600,5 +624,6 @@ footer .copy {
 @media (max-width: 400px) {
   .nav-menu {
     width: 100%;
-  } /* Ocupa toda la pantalla */
+  }
+  /* Ocupa toda la pantalla */
 }/*# sourceMappingURL=styles.css.map */
