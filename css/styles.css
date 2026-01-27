@@ -626,4 +626,53 @@ footer .copy {
     width: 100%;
   }
   /* Ocupa toda la pantalla */
+}
+/* --- AJUSTES RESPONSIVE SPAINTOBALI --- */
+/* Contenedor principal */
+.container {
+  width: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Adaptación para Tablets y Móviles */
+@media (max-width: 768px) {
+  /* Reducir el tamaño del título Hero */
+  .destino-hero h1 {
+    font-size: 2.5rem !important;
+    padding: 0 10px;
+  }
+  .destino-hero p {
+    font-size: 1.1rem !important;
+  }
+  /* Convertir las 2 columnas en 1 sola columna */
+  div[style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  /* Ajustar las cajas de valor (negras) */
+  div[style*="background-color: #1a1a1a"] {
+    padding: 25px !important;
+  }
+  /* Ajustar el botón para que no ocupe toda la pantalla pero sea fácil de pulsar */
+  .btn-submit {
+    width: 100%;
+    padding: 15px 20px !important;
+    font-size: 1rem !important;
+  }
+  /* Ajustar márgenes de secciones */
+  section {
+    padding: 40px 10px !important;
+  }
+}
+/* Ajuste para móviles muy pequeños */
+@media (max-width: 480px) {
+  .destino-hero h1 {
+    font-size: 2rem !important;
+  }
+  h2 {
+    font-size: 1.8rem !important;
+  }
 }/*# sourceMappingURL=styles.css.map */
