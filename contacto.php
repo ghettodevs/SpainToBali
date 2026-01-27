@@ -8,8 +8,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 // 2. CARGA DE VARIABLES DE ENTORNO
 // Forzamos la ruta /var/www/html/ que es donde está tu .env según el ls -la
 try {
-    $dotenv = Dotenv\Dotenv::createImmutable('/var/www/html/');
-    $dotenv->load();
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->safeLoad();
 } catch (Exception $e) {
     // Si falla el .env, lo registramos pero intentamos seguir para ver el error real
     error_log("Error cargando .env: " . $e->getMessage());
