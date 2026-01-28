@@ -66,7 +66,7 @@ include 'includes/header.php';
                 </div>
 
                 <div class="row">
-                    <div class="input-group">
+                    <div class="input-group fecha">
                         <label>Fecha prevista</label>
                         <input type="date" name="fecha" required>
                     </div>

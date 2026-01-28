@@ -677,13 +677,18 @@ footer .copy {
   }
 }
 /* Esto obliga a que los elementos se pongan uno debajo del otro en móviles */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .form-container .row {
     display: flex;
     flex-direction: column; /* Cambia de horizontal a vertical */
-    gap: 15px; /* Añade espacio entre los dos campos */
+    gap: 10px; /* Añade espacio entre los dos campos */
   }
   .form-container .row .input-group {
     width: 100% !important; /* Fuerza a que ocupen todo el ancho */
+  }
+  label {
+    margin-bottom: 5px;
+    display: block;
+    font-weight: bold;
   }
 }/*# sourceMappingURL=styles.css.map */
