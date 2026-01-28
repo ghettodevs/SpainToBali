@@ -23,16 +23,16 @@ include 'includes/header.php';
     </div>
 
     <div class="grid-gallery">
-    <a href="ubud.php" class="item" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800')">
+    <a href="ubud.php" class="item" style="background-image: url(/assets/img/ubud.jpeg)">
         <div class="overlay"><span>Ubud & Selva</span></div>
     </a>
-    <a href="templos.php" class="item" style="background-image: url('https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800')">
+    <a href="templos.php" class="item" style="background-image: url('/assets/img/templos.jpeg')">
         <div class="overlay"><span>Templos Sagrados</span></div>
     </a>
-    <a href="playas.php" class="item" style="background-image: url('https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=800')">
+    <a href="playas.php" class="item" style="background-image: url('/assets/img/playas.jpeg')">
         <div class="overlay"><span>Playas paradisíacas</span></div>
     </a>
-    <a href="cascadas.php" class="item" style="background-image: url('https://images.unsplash.com/photo-1734791012420-3107457b158b?q=80&w=987&auto=format&fit=crop&w=800')">
+    <a href="cascadas.php" class="item" style="background-image: url('/assets/img/cascadas.jpeg')">
         <div class="overlay"><span>Cascadas Ocultas</span></div>
     </a>
 </div>

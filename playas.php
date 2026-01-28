@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 include 'includes/header_gracias.php';
 ?>
 
-<section class="destino-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=1740'); background-size: cover; background-position: center; height: 70vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+<section class="destino-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/assets/img/playas.jpeg'); background-size: cover; background-position: center; height: 70vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
     <div class="container">
         <span style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; color: #d4af37; font-weight: bold;">Edición Verano 2026</span>
         <h1 style="font-size: 4rem; color: #d4af37; margin: 10px 0; font-family: 'Playfair Display', serif;">Playas Paradisiacas</h1>

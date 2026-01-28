@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 include 'includes/header_gracias.php';
 ?>
 
-<section class="destino-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1643346173514-74a489cedccf?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; height: 70vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
+<section class="destino-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/assets/img/temploEntrada.jpeg'); background-size: cover; background-position: center; height: 70vh; display: flex; align-items: center; justify-content: center; color: white; text-align: center;">
     <div class="container">
         <span style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; color: #d4af37; font-weight: bold;">Rutas del Espíritu 2026</span>
         <h1 style="font-size: 4rem; color: #d4af37; margin: 10px 0; font-family: 'Playfair Display', serif;">Templos Sagrados</h1>
