@@ -784,3 +784,16 @@ footer {
         font-size: 1.8rem !important;
     }
 }
+
+/* Esto obliga a que los elementos se pongan uno debajo del otro en móviles */
+@media (max-width: 600px) {
+    .form-container .row {
+        display: flex;
+        flex-direction: column; /* Cambia de horizontal a vertical */
+        gap: 15px; /* Añade espacio entre los dos campos */
+    }
+
+    .form-container .row .input-group {
+        width: 100% !important; /* Fuerza a que ocupen todo el ancho */
+    }
+}
