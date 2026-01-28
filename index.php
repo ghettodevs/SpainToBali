@@ -119,7 +119,7 @@ include 'includes/header.php';
                 
                 <form action="/gracias?info=guia" method="POST" class="magnet-form">
                     <input type="email" name="email_guia" placeholder="Tu email..." required>
-                    <button type="submit" class="btn-gold">Enviar Guía a mi Email</button>
+                    <button type="submit" class="btn-gold">Obtener Guía</button>
                 </form>
                 
                 <small>🔒 No enviamos spam. Solo cultura balinesa.</small>
