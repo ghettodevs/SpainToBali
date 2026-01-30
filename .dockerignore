@@ -1,4 +1,7 @@
+.git/
 vendor/
+scss/
+sql/
 
 .DS_Store
 .dockerignore
