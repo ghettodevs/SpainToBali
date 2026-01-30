@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Block access to vendor folder
+RewriteRule ^vendor(/.*)?$ - [F,L]
+
 # Unless directory, remove trailing slash
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^([^/]+)/$ http://%{HTTP_HOST}/$1 [R=301,L]
