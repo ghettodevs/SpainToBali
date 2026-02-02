@@ -1,0 +1,76 @@
+// Animación de entrada
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: #fff;
+    padding: 20px 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    border-radius: 15px;
+    z-index: 10000;
+    display: none; // El JS lo cambiará a 'block' o 'flex'
+    
+    // Aplicamos la animación
+    animation: fadeInUp 0.6s ease-out forwards;
+
+    .cookie-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    .cookie-text {
+        font-size: 0.95rem;
+        color: #333;
+        line-height: 1.5;
+        
+        strong { color: #2d6a4f; } // Tu color corporativo
+        a { color: #2d6a4f; text-decoration: underline; }
+    }
+
+    .cookie-btns {
+        display: flex;
+        gap: 12px;
+    }
+
+    .btn-cookie {
+        padding: 10px 24px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &.btn-accept {
+            background: #1b4332;
+            color: white;
+            &:hover { background: #c5a059; transform: translateY(-2px); }
+        }
+
+        &.btn-deny {
+            background: #f4f4f4;
+            color: #666;
+            &:hover { background: #e8e8e8; }
+        }
+    }
+}

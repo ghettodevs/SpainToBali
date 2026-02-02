@@ -1,0 +1,25 @@
+.legal-page {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+
+    .section-cookie  {
+        padding: 0;
+    }
+    
+    h1 {
+        font-family: 'Playfair Display', serif;
+        color: #1b4332;
+        margin-bottom: 30px;
+    }
+    
+    h2 {
+        margin-top: 30px;
+        color: #333;
+    }
+    
+    p, li {
+        color: #555;
+        margin-bottom: 15px;
+    }
+}

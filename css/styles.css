@@ -1,4 +1,103 @@
 @charset "UTF-8";
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: #fff;
+  padding: 20px 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  z-index: 10000;
+  display: none;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+.cookie-banner .cookie-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .cookie-banner .cookie-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.cookie-banner .cookie-text {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+}
+.cookie-banner .cookie-text strong {
+  color: #2d6a4f;
+}
+.cookie-banner .cookie-text a {
+  color: #2d6a4f;
+  text-decoration: underline;
+}
+.cookie-banner .cookie-btns {
+  display: flex;
+  gap: 12px;
+}
+.cookie-banner .btn-cookie {
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.cookie-banner .btn-cookie.btn-accept {
+  background: #1b4332;
+  color: white;
+}
+.cookie-banner .btn-cookie.btn-accept:hover {
+  background: #c5a059;
+  transform: translateY(-2px);
+}
+.cookie-banner .btn-cookie.btn-deny {
+  background: #f4f4f4;
+  color: #666;
+}
+.cookie-banner .btn-cookie.btn-deny:hover {
+  background: #e8e8e8;
+}
+
+.legal-page {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.legal-page .section-cookie {
+  padding: 0;
+}
+.legal-page h1 {
+  font-family: "Playfair Display", serif;
+  color: #1b4332;
+  margin-bottom: 30px;
+}
+.legal-page h2 {
+  margin-top: 30px;
+  color: #333;
+}
+.legal-page p, .legal-page li {
+  color: #555;
+  margin-bottom: 15px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -432,6 +531,24 @@ footer .copy {
   font-size: 0.8rem;
   margin-top: 30px;
 }
+@media (max-width: 768px) {
+  footer .footer-legal-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 1rem;
+  }
+  footer .footer-legal-links a {
+    color: white;
+    margin: 0 10px;
+    font-size: 0.9rem;
+  }
+  footer .footer-legal-links a:hover {
+    text-decoration: underline;
+  }
+}
 
 .whatsapp-float {
   position: fixed;
@@ -664,7 +781,7 @@ footer .copy {
   }
   /* Ajustar márgenes de secciones */
   section {
-    padding: 40px 10px !important;
+    padding: 40px 10px;
   }
 }
 /* Ajuste para móviles muy pequeños */
