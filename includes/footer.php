@@ -15,7 +15,7 @@
             &copy; <?php echo date('Y'); ?> SpainToBali - Todos los derechos reservados.
         </div>
 
-        <a href="https://wa.link/1cv4bd" class="whatsapp-float" target="_blank">
+        <a href="https://wa.link/of8lz6" class="whatsapp-float" target="_blank">
             </a>
     </div>
 </footer>
