@@ -48,7 +48,7 @@ include 'includes/header.php';
                 <ul class="features">
                     <li>✅ Hoteles y Villas seleccionados</li>
                     <li>✅ Guías locales en español/ingles</li>
-                    <li>✅ Asistencia 24/7</li>
+                    <li>✅ Asistencia Directa SpainToBali</li>
                 </ul>
             </div>
 
@@ -102,7 +102,7 @@ include 'includes/header.php';
             </div>
             <div class="beneficio-item">
                 <span class="icon">🛡️</span>
-                <h3>Seguridad 24/7</h3>
+                <h3>Seguridad</h3>
                 <p>Asistencia constante durante tu viaje en 2026 para que tu única preocupación sea disfrutar.</p>
             </div>
         </div>
