@@ -119,6 +119,12 @@ include 'includes/header.php';
                 
                 <form action="/gracias?info=guia" method="POST" class="magnet-form">
                     <input type="email" name="email_guia" placeholder="Tu email..." required>
+                    <div class="privacy-checkbox">
+                        <input type="checkbox" id="privacy_policy" name="privacy_policy" required>
+                        <label for="privacy_policy">
+                            He leído y acepto la <a href="privacidad.php" target="_blank">política de privacidad</a>.
+                        </label>
+                    </div>
                     <button type="submit" class="btn-gold">Obtener Guía</button>
                 </form>
                 
