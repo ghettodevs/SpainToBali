@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="shortcut icon" href="/assets/icons/favicon.png" type="image/x-icon">
     <script src="js/cookies.js" defer></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F409Y5EXVY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F409Y5EXVY');
+</script>
+
 </head>
 
 <body>
